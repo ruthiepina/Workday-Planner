@@ -23,6 +23,16 @@ $(function () {
    // past, present, and future classes? How can Day.js be used to get the
    // current hour in 24-hour time?
    //
+   //* Variable to hold info to localStorage
+   var tasks = [];
+
+   //* Check for any current or previous data located in localStorage
+   tasks = JSON.parse(localStorage.getItem("myDay"));
+   if (!tasks) {
+      //* If some data is found, then store that in tasks array
+      tasks = [];
+   }
+   console.log("file: script.js:34 ~ tasks:", tasks);
 
    const NOON = 12;
    for (let hour = 0; hour < 24; hour++) {
@@ -40,42 +50,19 @@ $(function () {
       }
 
       let hourId = "hour-" + hour;
-      $(
-         "<div id='" +
-            hourId +
-            "' class='row time-block " +
-            classColor +
-            "'></div>"
-      ).appendTo("#cont-fluid");
-      $(
-         "<div id='hour-text-" +
-            hour +
-            "' class='col-2 col-md-1 hour text-center py-3'></div>"
-      ).appendTo("#" + hourId);
+      $("<div id='" + hourId + "' class='row time-block " + classColor + "'></div>").appendTo("#cont-fluid");
+      $("<div id='hour-text-" + hour + "' class='col-2 col-md-1 hour text-center py-3'></div>").appendTo("#" + hourId);
 
       let displayTime = hour;
       displayTime -= hour > NOON ? NOON : 0;
       displayTime += hour < NOON ? " AM" : " PM";
       $("#hour-text-" + hour).text(displayTime);
 
-      $(
-         "<textarea id='textarea-" +
-            hour +
-            "' class='col-8 col-md-10 description' rows='3'></textarea>"
-      ).appendTo("#" + hourId);
-      $(
-         "<button id='btn-" +
-            hour +
-            "' class='btn saveBtn col-2 col-md-1' aria-label='save'></button>"
-      ).appendTo("#" + hourId);
-      $(
-         "<i id='icon-" + hour + "' class='fas fa-save' aria-hidden='true'></i>"
-      ).appendTo("#btn-" + hour);
-   }
-   console.log("containerFluidEl: ", $("#cont-fluid"));
+      $("<textarea id='textarea-" + hour + "' class='col-8 col-md-10 description' rows='3'></textarea>").appendTo("#" + hourId);
+      //* Refresh planner from local storage
+      $("#textarea-" + hour).val(tasks[hour]);
 
-   // TODO: Add code to get any user input that was saved in localStorage and set
-   // the values of the corresponding textarea elements. HINT: How can the id
-   // attribute of each time-block be used to do this?
-   //
+      $("<button id='btn-" + hour + "' class='btn saveBtn col-2 col-md-1' aria-label='save'></button>").appendTo("#" + hourId);
+      $("<i id='icon-" + hour + "' class='fas fa-save' aria-hidden='true'></i>").appendTo("#btn-" + hour);
+   }
 });
