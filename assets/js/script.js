@@ -25,7 +25,7 @@ $(function () {
    //
 
    const NOON = 12;
-   for (let hour = 9; hour < 18; hour++) {
+   for (let hour = 0; hour < 24; hour++) {
       let hourId = "hour-" + hour;
       $(
          "<div id='" + hourId + "' class='row time-block future'></div>"
@@ -54,13 +54,6 @@ $(function () {
       $(
          "<i id='icon-" + hour + "' class='fas fa-save' aria-hidden='true'></i>"
       ).appendTo("#btn-" + hour);
-
-      // divHourDisplayEl.innerText = hour;
-      // var textAreaEl = $('<textarea class="col-8 col-md-10 description" rows="3">');
-      // var buttonEl = $('<button class="btn saveBtn col-2 col-md-1" aria-label="save">');
-      // var iconEl = $('<i class="fas fa-save" aria-hidden="true">');
-      // divHourEl.appendTo(".container-fluid");
-      // console.log("containerFluidEl: ", containerFluidEl);
    }
    console.log("containerFluidEl: ", $("#cont-fluid"));
 
