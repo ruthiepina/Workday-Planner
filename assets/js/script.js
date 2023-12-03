@@ -23,24 +23,46 @@ $(function () {
    // past, present, and future classes? How can Day.js be used to get the
    // current hour in 24-hour time?
    //
-   console.log("BEFORE LOOP");
-   for (var hour = 9; hour < 17; hour++) {
-      var containerFluidEl = $(".container-fluid");
-      console.log("INSIDE LOOP");
-      console.log("containerFluidEl: ", containerFluidEl);
-      var divHourEl = $('<div id="hour-' + hour + '" class="row time-block future">');
-      console.log("divHourEl: ", divHourEl);
-      var divHourDisplayEl = $('<div class="col-2 col-md-1 hour text-center py-3">');
-      divHourDisplayEl.innerText = hour;
-      var textAreaEl = $('<textarea class="col-8 col-md-10 description" rows="3">');
-      var buttonEl = $('<button class="btn saveBtn col-2 col-md-1" aria-label="save">');
-      var iconEl = $('<i class="fas fa-save" aria-hidden="true">');
-      divHourEl.appendTo(".container-fluid");
-      console.log("containerFluidEl: ", containerFluidEl);
+
+   const NOON = 12;
+   for (let hour = 9; hour < 18; hour++) {
+      let hourId = "hour-" + hour;
+      $(
+         "<div id='" + hourId + "' class='row time-block future'></div>"
+      ).appendTo("#cont-fluid");
+      $(
+         "<div id='hour-text-" +
+            hour +
+            "' class='col-2 col-md-1 hour text-center py-3'></div>"
+      ).appendTo("#" + hourId);
+
+      let displayTime = hour;
+      displayTime -= hour > NOON ? NOON : 0;
+      displayTime += hour < NOON ? " AM" : " PM";
+      $("#hour-text-" + hour).text(displayTime);
+
+      $(
+         "<textarea id='textarea-" +
+            hour +
+            "' class='col-8 col-md-10 description' rows='3'></textarea>"
+      ).appendTo("#" + hourId);
+      $(
+         "<button id='btn-" +
+            hour +
+            "' class='btn saveBtn col-2 col-md-1' aria-label='save'></button>"
+      ).appendTo("#" + hourId);
+      $(
+         "<i id='icon-" + hour + "' class='fas fa-save' aria-hidden='true'></i>"
+      ).appendTo("#btn-" + hour);
+
+      // divHourDisplayEl.innerText = hour;
+      // var textAreaEl = $('<textarea class="col-8 col-md-10 description" rows="3">');
+      // var buttonEl = $('<button class="btn saveBtn col-2 col-md-1" aria-label="save">');
+      // var iconEl = $('<i class="fas fa-save" aria-hidden="true">');
+      // divHourEl.appendTo(".container-fluid");
+      // console.log("containerFluidEl: ", containerFluidEl);
    }
-   var containerFluidEl = $(".container-fluid");
-   console.log("containerFluidEl: ", containerFluidEl);
-   console.log("AFTER LOOP");
+   console.log("containerFluidEl: ", $("#cont-fluid"));
 
    // TODO: Add code to get any user input that was saved in localStorage and set
    // the values of the corresponding textarea elements. HINT: How can the id
