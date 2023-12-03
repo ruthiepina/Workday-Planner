@@ -26,9 +26,26 @@ $(function () {
 
    const NOON = 12;
    for (let hour = 0; hour < 24; hour++) {
+      let currentHour = dayjs().hour();
+      let classColor = "";
+
+      if (currentHour > hour) {
+         classColor = "past";
+      } else {
+         if (currentHour === hour) {
+            classColor = "present";
+         } else {
+            classColor = "future";
+         }
+      }
+
       let hourId = "hour-" + hour;
       $(
-         "<div id='" + hourId + "' class='row time-block future'></div>"
+         "<div id='" +
+            hourId +
+            "' class='row time-block " +
+            classColor +
+            "'></div>"
       ).appendTo("#cont-fluid");
       $(
          "<div id='hour-text-" +
