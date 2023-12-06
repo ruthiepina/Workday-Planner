@@ -48,7 +48,7 @@ The following screenshot demonstrates the application functionality: ![Workday P
 ## Access
 
 -  The URL of the functional, deployed application:
--  [Coding Quiz](https://ruthiepina.github.io/Workday-Planner/)
+-  [Workday Planner Live Page](https://ruthiepina.github.io/Workday-Planner/)
 
 -  The URL of the GitHub repository:
 -  [Workday Planner Repo](https://github.com/ruthiepina/Workday-Planner)
